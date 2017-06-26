@@ -1,4 +1,7 @@
 import java.io.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
 
 
@@ -6,83 +9,28 @@ import java.net.Socket;
 
 public class Udp_Client extends Thread {
     int port;
+    String host;
     String s;
     String Greetings_from_S;
+    byte [] data = new byte[1];
+    InetAddress addr;
+    DatagramSocket ds;
+
+    Udp_Client() {
 
 
-    Udp_Client(int port) {
-
-        this.port = port;
-        start();
-
-
-    }
-
-    public void run() {
-
-        try (Socket socket = new Socket("192.168.1.200", port)) {
-
-            PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-            pw.println("program");// Greetings with SERVER
-            System.out.println("program");
-
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            Greetings_from_S = br.readLine();
-            System.out.println(Greetings_from_S);
-
-
-            if (Greetings_from_S.equals("ready")) {
-
-                try
-
-                {
-//BlinkOUT.bin
-                    File file = new File("d:BlinkOUT.bin");
-                    BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
-
-
-                    byte[] data = new byte[bis.available()];
-                    bis.read(data);
-
-
-                    byte[] data_buffer = new byte[1024];
-
-
-                    int frames = data.length / 1024;
-                    System.out.println(frames);
-                    int residy = data.length % 1024;
-
-
-                    for (int i = 0; i < frames; i++) {
-                        for (int k = 0; k < (1024); k++) {
-                            data_buffer[k] = data[k + 1024 * (i)];
-                        }
-
-
-                    }
-                    byte[] data_buffer2 = new byte[residy];
-                    for (int i = 0; i < residy; i++) {
-
-                        data_buffer2[i] = data[i + 1024 * (frames)];
-                    }
-
-
-                    pw.println("stop program");//
-                    System.out.println("stop program");
+      //
 
 
 
 
 
-                } catch (Exception e) {
+        try  { ds = new DatagramSocket();
 
-                    System.out.println(e);
-
-                }
+            addr = InetAddress.getByName("192.168.1.138");
 
 
-            }
+
 
 
         } catch (Exception e) {
@@ -91,6 +39,36 @@ public class Udp_Client extends Thread {
 
         }
 
+        start();
+
+
+
+
+
+    }
+
+    public void run()  {
+
+
+
+
+
+
+        while (true) {
+            data[0] = (byte) Control_Panel.direction;
+            DatagramPacket pack = new DatagramPacket(data, 1, addr, 5000);
+            try {
+                ds.send(pack);
+             //   System.out.println(Control_Panel.direction);
+              //  System.out.println("fffff");
+            } catch (Exception e) {
+
+                System.out.println(e);
+
+            }
+
+
+        }
     }
 
 }
