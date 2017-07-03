@@ -10,7 +10,7 @@ import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 public class Control_Panel extends JFrame{
 
 
-    public static int direction=5;
+    public static int direction=50;
     Control_Panel cp;
 
     Control_Panel() {
@@ -56,6 +56,8 @@ public class Control_Panel extends JFrame{
 
             @Override
             public void keyReleased(KeyEvent keyEvent) {
+
+                direction=50;
             }
         });
     }
