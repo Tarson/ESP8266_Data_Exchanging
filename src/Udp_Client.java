@@ -59,7 +59,7 @@ public class Udp_Client extends Thread {
             DatagramPacket pack = new DatagramPacket(data, 1, addr, 5000);
             try {
                 ds.send(pack);
-             //   System.out.println(Control_Panel.direction);
+              //  System.out.println(Control_Panel.direction);
               //  System.out.println("fffff");
             } catch (Exception e) {
 
