@@ -27,7 +27,7 @@ public class Udp_Client extends Thread {
 
         try  { ds = new DatagramSocket();
 
-            addr = InetAddress.getByName("192.168.1.94");
+            addr = InetAddress.getByName(Control_Panel.ip_address);
 
 
 
@@ -64,7 +64,7 @@ public class Udp_Client extends Thread {
         while (true) {
 
            //if(Control_Panel.direction!=5){
-            int numb =0;
+            int numb =10;
             switch (Control_Panel.direction) {
 
                 case (37):
@@ -106,17 +106,17 @@ public class Udp_Client extends Thread {
             data = s.getBytes();
 
 
-            DatagramPacket pack = new DatagramPacket(data, data.length, addr, 5000);
-            try {
-                ds.send(pack);
-                System.out.println(s);
-                Thread.sleep(100);
-                // System.out.println("fffff");
-            } catch (Exception e) {
+                DatagramPacket pack = new DatagramPacket(data, data.length, addr, Control_Panel.udp_port);
+                try {
+                    ds.send(pack);
+                    System.out.println(s);
+                    Thread.sleep(100);
+                    // System.out.println("fffff");
+                } catch (Exception e) {
 
-                System.out.println(e);
+                    System.out.println(e);
 
-            }
+                }
 
          //   }
 

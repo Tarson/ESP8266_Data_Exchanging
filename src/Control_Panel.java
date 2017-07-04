@@ -28,8 +28,8 @@ public class Control_Panel extends JFrame {
 
 
     public static int direction=10;
-    public static String ip_address;
-    public static int udp_port;
+    public static String ip_address="192.168.1.30";
+    public static int udp_port=5000;
     static  Control_Panel cp;
 
     Control_Panel() {
@@ -62,7 +62,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =87;
-                System.out.println(direction);
+               // System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -75,7 +75,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =83;
-                System.out.println(direction);
+             //   System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -88,7 +88,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =65;
-                System.out.println(direction);
+              //  System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -102,7 +102,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =68;
-                System.out.println(direction);
+                //System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -116,7 +116,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =37;
-                System.out.println(direction);
+              //  System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -129,7 +129,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =38;
-                System.out.println(direction);
+             //   System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -142,7 +142,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =40;
-                System.out.println(direction);
+             //   System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -154,7 +154,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =39;
-                System.out.println(direction);
+               // System.out.println(direction);
                 reqFocus(true);
             }
         });
@@ -163,17 +163,17 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 udp_port=Integer.parseInt(jTextField1.getText());
-                System.out.println(udp_port);
+               // System.out.println(udp_port);
                 reqFocus(true);
             }
         });
 
-        jTextField2.setText("192.168.1.200");
+        jTextField2.setText(ip_address);
         jTextField2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 ip_address=jTextField2.getText();
-                System.out.println(ip_address);
+              //  System.out.println(ip_address);
                 reqFocus(true);
             }
         });
@@ -302,13 +302,15 @@ public class Control_Panel extends JFrame {
             public void keyPressed(KeyEvent keyEvent) {
 
                 direction = keyEvent.getKeyCode();
-                System.out.println(direction);
+              //  System.out.println(direction);
 
             }
 
 
             @Override
             public void keyReleased(KeyEvent keyEvent) {
+
+                direction=50;
             }
         });
 
