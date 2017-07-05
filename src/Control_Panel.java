@@ -116,6 +116,7 @@ public class Control_Panel extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
                 direction =37;
+
               //  System.out.println(direction);
                 reqFocus(true);
             }
