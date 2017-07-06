@@ -7,45 +7,36 @@ import java.net.Socket;
 
 
 
-public class Udp_Client extends Thread {
-    int port;
-    String host;
-    String s;
-    String Greetings_from_S;
+public class Udp_Client extends Thread
+{
+
+
+    String ip_address;
     byte [] data;
+    int udp_port;
     InetAddress addr;
     DatagramSocket ds;
+    private static Udp_Client instance;
 
-    Udp_Client() {
+   private Udp_Client()
 
+   {
+       ip_address=Control_Panel.jTextField2.getText();
+       udp_port=Integer.parseInt(Control_Panel.jTextField1.getText());
 
-      //
-
-
-
-
-
-        try  { ds = new DatagramSocket();
-
-            addr = InetAddress.getByName(Control_Panel.ip_address);
-
-
-
-
-
-        } catch (Exception e) {
-
+        try
+        {
+            ds = new DatagramSocket();
+            addr = InetAddress.getByName(ip_address);
+            // System.out.println(addr);
+        }
+        catch (Exception e)
+        {
             System.out.println(e);
-
         }
 
         start();
-
-
-
-
-
-    }
+   }
 
     public void run()  {
 
@@ -54,18 +45,16 @@ public class Udp_Client extends Thread {
     keys servo 2  -  87  83
     keys servo 3  -  65  68
     keys servo 4   - 38  40
-
-
 */
 
 
 
 
-        while (true) {
-
-           //if(Control_Panel.direction!=5){
-            int numb =10;
-            switch (Control_Panel.direction) {
+        while (true)
+        {
+            int numb;
+            switch (Control_Panel.direction)
+            {
 
                 case (37):
                     numb=1;
@@ -95,34 +84,39 @@ public class Udp_Client extends Thread {
                 case (50):
                     numb=10;
                     break;
-
+                    default:
+                        numb=10;
             }
 
 
-
-
             String s = "" + numb;
-
             data = s.getBytes();
 
-
-                DatagramPacket pack = new DatagramPacket(data, data.length, addr, Control_Panel.udp_port);
-                try {
+            if (numb!=10)
+            {
+                DatagramPacket pack = new DatagramPacket(data, data.length, addr, udp_port);
+                try
+                {
                     ds.send(pack);
                     System.out.println(s);
                     Thread.sleep(100);
-                    // System.out.println("fffff");
-                } catch (Exception e) {
-
-                    System.out.println(e);
-
+                    Control_Panel.direction=50;
                 }
-
-         //   }
-
-          //  Control_Panel.direction=5;
-
+                catch (Exception e)
+                {
+                    System.out.println(e);
+                }
+            }
         }
     }
 
+
+    public static Udp_Client getInstance()//MAKING SINGLETON
+    {
+        if(instance == null)
+        {
+            instance = new Udp_Client();
+        }
+        return instance;
+    }
 }

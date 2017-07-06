@@ -1,16 +1,26 @@
 import javafx.event.ActionEvent;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
+
+
+/*
+    keys servo 1  -  37 39
+    keys servo 2  -  87  83
+    keys servo 3  -  65  68
+    keys servo 4   - 38  40
+*/
 
 /**
  * Created by m on 24.06.2017.
  */
-public class Control_Panel extends JFrame {
+public class Control_Panel extends JFrame
+{
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -21,24 +31,23 @@ public class Control_Panel extends JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    public static javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField jTextField2;
 
 
 
 
     public static int direction=10;
-    public static String ip_address="192.168.1.30";
-    public static int udp_port=5000;
+
+
     static  Control_Panel cp;
 
     Control_Panel() {
 
         super("ESP8266");
-        //System.out.println("iiii");
+
 
         cp = this;
-
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -53,131 +62,153 @@ public class Control_Panel extends JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTextField1.setText("5000");
+        jTextField2.setText("192.168.1.30");
+
+
 
         jButton1.setText("W: вперёд");
-        jButton1.setActionCommand("W");
-        jButton1.addActionListener(new ActionListener() {
+        jButton1.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
-                direction =87;
-               // System.out.println(direction);
-                reqFocus(true);
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
+               direction =87;
+               reqFocus(true);
+               Udp_Client.getInstance();
             }
         });
 
 
         jButton2.setText("S: назад");
-        jButton2.setActionCommand("S");
-        jButton2.addActionListener(new ActionListener() {
+        jButton2.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
                 direction =83;
-             //   System.out.println(direction);
                 reqFocus(true);
+                Udp_Client.getInstance();
             }
         });
 
 
         jButton3.setText("A: вверх ");
         jButton3.setActionCommand("A");
-        jButton3.addActionListener(new ActionListener() {
+        jButton3.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
                 direction =65;
-              //  System.out.println(direction);
                 reqFocus(true);
+                Udp_Client.getInstance();
             }
         });
 
 
 
         jButton4.setText("D: вниз  ");
-        jButton4.setActionCommand("D");
-        jButton4.addActionListener(new ActionListener() {
+        jButton4.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
                 direction =68;
-                //System.out.println(direction);
                 reqFocus(true);
+                Udp_Client.getInstance();
             }
         });
 
 
 
         jButton5.setText("<: влево ");
-        jButton5.setActionCommand("<");
-        jButton5.addActionListener(new ActionListener() {
+        jButton5.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
                 direction =37;
-
-              //  System.out.println(direction);
                 reqFocus(true);
+                Udp_Client.getInstance();
             }
         });
 
 
         jButton6.setText("^: раскрыть");
-        jButton6.setActionCommand("^");
-        jButton6.addActionListener(new ActionListener() {
+        jButton6.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
                 direction =38;
-             //   System.out.println(direction);
                 reqFocus(true);
+                Udp_Client.getInstance();
             }
         });
 
 
         jButton7.setText("Y: захват  ");
-        jButton7.setActionCommand("Y  ");
-        jButton7.addActionListener(new ActionListener() {
+        jButton7.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
                 direction =40;
-             //   System.out.println(direction);
                 reqFocus(true);
+                Udp_Client.getInstance();
             }
         });
 
         jButton8.setText(">: вправо");
-        jButton8.setActionCommand(">");
-        jButton8.addActionListener(new ActionListener() {
+        jButton8.addActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
+            public void actionPerformed(java.awt.event.ActionEvent actionEvent)
+            {
                 direction =39;
-               // System.out.println(direction);
                 reqFocus(true);
+                Udp_Client.getInstance();
             }
+
         });
-        jTextField1.setText("5000");
-        jTextField1.addActionListener(new ActionListener() {
+
+
+        addKeyListener(new KeyListener()
+        {
+            public void keyTyped(KeyEvent keyEvent)
+            {
+
+            }
+
+
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
-                udp_port=Integer.parseInt(jTextField1.getText());
-               // System.out.println(udp_port);
-                reqFocus(true);
+            public void keyPressed(KeyEvent keyEvent)
+            {
+                direction = keyEvent.getKeyCode();
+                Udp_Client.getInstance();
+            }
+
+
+            @Override
+            public void keyReleased(KeyEvent keyEvent)
+            {
+                direction=50;
             }
         });
 
-        jTextField2.setText(ip_address);
-        jTextField2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent actionEvent) {
-                ip_address=jTextField2.getText();
-              //  System.out.println(ip_address);
-                reqFocus(true);
-            }
-        });
+
+
+
+
 
 
 
@@ -255,72 +286,16 @@ public class Control_Panel extends JFrame {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          setSize(600, 300);
-        this.setFocusable(true);
+        setSize(600, 300);
+        setFocusable(true);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-/*
-    keys servo 1  -  37 39
-    keys servo 2  -  87  83
-    keys servo 3  -  65  68
-    keys servo 4   - 38  40
-*/
-
-        this.addKeyListener(new KeyListener() {
-
-
-            public void keyTyped(KeyEvent keyEvent) {
-
-
-            }
-
-
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-
-                direction = keyEvent.getKeyCode();
-              //  System.out.println(direction);
-
-            }
-
-
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-
-                direction=50;
-            }
-        });
-
-
-
-
-
-
     }
+
+
+
     public  static void reqFocus(Boolean b){
 
         if(b){cp.requestFocus(true);}
@@ -328,7 +303,4 @@ public class Control_Panel extends JFrame {
     }
 
 
-
-
-
-   }
+}
