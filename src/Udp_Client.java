@@ -10,7 +10,7 @@ import java.net.Socket;
 public class Udp_Client extends Thread
 {
 
-
+    int numb=10;
     String ip_address;
     byte [] data;
     int udp_port;
@@ -52,7 +52,7 @@ public class Udp_Client extends Thread
 
         while (true)
         {
-            int numb;
+
             switch (Control_Panel.direction)
             {
 
@@ -84,29 +84,27 @@ public class Udp_Client extends Thread
                 case (50):
                     numb=10;
                     break;
-                    default:
-                        numb=10;
+
             }
 
 
             String s = "" + numb;
             data = s.getBytes();
 
-            if (numb!=10)
-            {
+
                 DatagramPacket pack = new DatagramPacket(data, data.length, addr, udp_port);
                 try
                 {
                     ds.send(pack);
                     System.out.println(s);
                     Thread.sleep(100);
-                    Control_Panel.direction=50;
+                   // Control_Panel.direction=50;
                 }
                 catch (Exception e)
                 {
                     System.out.println(e);
                 }
-            }
+
         }
     }
 

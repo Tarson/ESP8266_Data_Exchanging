@@ -36,6 +36,8 @@ public class Control_Panel extends JFrame
 
 
 
+    boolean stop=false;
+
 
     public static int direction=10;
 
@@ -74,9 +76,27 @@ public class Control_Panel extends JFrame
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-               direction =87;
-               reqFocus(true);
-               Udp_Client.getInstance();
+
+                if(!stop)
+                {
+                    direction = 87;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton1.setEnabled(true);
+
+
+                }
+                else
+                {
+                    stop=false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
+
+
             }
         });
 
@@ -88,24 +108,49 @@ public class Control_Panel extends JFrame
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-                direction =83;
-                reqFocus(true);
-                Udp_Client.getInstance();
+                if(!stop)
+                {
+                    direction = 83;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton2.setEnabled(true);
+                }
+                else
+                {
+                    stop=false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
             }
         });
 
 
         jButton3.setText("A: вверх ");
-        jButton3.setActionCommand("A");
         jButton3.addActionListener(new ActionListener()
         {
 
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-                direction =65;
-                reqFocus(true);
-                Udp_Client.getInstance();
+                if(!stop)
+                {
+                    direction = 65;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton3.setEnabled(true);
+                }
+                else
+                {
+                    stop=false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
             }
         });
 
@@ -118,9 +163,22 @@ public class Control_Panel extends JFrame
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-                direction =68;
-                reqFocus(true);
-                Udp_Client.getInstance();
+                if(!stop)
+                {
+                    direction = 68;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton4.setEnabled(true);
+                }
+                else
+                {
+                    stop=false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
             }
         });
 
@@ -133,9 +191,22 @@ public class Control_Panel extends JFrame
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-                direction =37;
-                reqFocus(true);
-                Udp_Client.getInstance();
+                if(!stop)
+                {
+                    direction = 37;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton5.setEnabled(true);
+                }
+                else
+                {
+                    stop=false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
             }
         });
 
@@ -147,9 +218,22 @@ public class Control_Panel extends JFrame
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-                direction =38;
-                reqFocus(true);
-                Udp_Client.getInstance();
+                if(!stop)
+                {
+                    direction = 40;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton6.setEnabled(true);
+                }
+                else
+                {
+                    stop=false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
             }
         });
 
@@ -161,9 +245,22 @@ public class Control_Panel extends JFrame
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-                direction =40;
-                reqFocus(true);
-                Udp_Client.getInstance();
+                if(!stop)
+                {
+                    direction = 38;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton7.setEnabled(true);
+                }
+                else
+                {
+                    stop=false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
             }
         });
 
@@ -174,9 +271,23 @@ public class Control_Panel extends JFrame
             @Override
             public void actionPerformed(java.awt.event.ActionEvent actionEvent)
             {
-                direction =39;
-                reqFocus(true);
-                Udp_Client.getInstance();
+                if(!stop)
+                {
+                    direction = 39;
+                    reqFocus(true);
+                    Udp_Client.getInstance();
+                    stop=true;
+                    buttons_disable();
+                    jButton8.setEnabled(true);
+
+                }
+                else
+                {
+                    stop =false;
+                    direction=50;
+                    reqFocus(true);
+                    buttons_enable();
+                }
             }
 
         });
@@ -300,6 +411,30 @@ public class Control_Panel extends JFrame
 
         if(b){cp.requestFocus(true);}
         else{cp.requestFocus(false);}
+    }
+
+    public void buttons_disable()
+    {
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton6.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton8.setEnabled(false);
+    }
+    public void buttons_enable()
+    {
+
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(true);
+        jButton4.setEnabled(true);
+        jButton5.setEnabled(true);
+        jButton6.setEnabled(true);
+        jButton7.setEnabled(true);
+        jButton8.setEnabled(true);
     }
 
 
