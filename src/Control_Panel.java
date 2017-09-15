@@ -65,7 +65,7 @@ public class Control_Panel extends JFrame
         jLabel2 = new javax.swing.JLabel();
 
         jTextField1.setText("5000");
-        jTextField2.setText("192.168.1.200");
+        jTextField2.setText("192.168.1.113");
 
 
 

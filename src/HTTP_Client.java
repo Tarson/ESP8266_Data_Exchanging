@@ -20,7 +20,7 @@ class Http_Client extends Thread {
 
     public void run() {
 
-        try (Socket socket = new Socket("192.168.1.200", port)) {
+        try (Socket socket = new Socket("192.168.1.113", port)) {
 
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             pw.println("data");// Greetings with SERVER
