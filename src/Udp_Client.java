@@ -96,7 +96,7 @@ public class Udp_Client extends Thread
                 try
                 {
                     ds.send(pack);
-                    System.out.println(s);
+                   // System.out.println(s);
                     Thread.sleep(100);
                    // Control_Panel.direction=50;
                 }
@@ -114,6 +114,7 @@ public class Udp_Client extends Thread
         if(instance == null)
         {
             instance = new Udp_Client();
+            new Udp_recipient();
         }
         return instance;
     }
