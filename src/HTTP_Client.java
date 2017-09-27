@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.Socket;
-
+import java.net.InetAddress;
 /**
  * Created by User on 27.07.2017.
  */
@@ -9,6 +9,8 @@ class Http_Client extends Thread {
     String s;
     String Greetings_from_S;
 
+
+    InetAddress iaLocal;
 
     Http_Client(int port) {
 
@@ -34,6 +36,9 @@ class Http_Client extends Thread {
             if(Greetings_from_S.equals("ready")) {
 
 
+                iaLocal = InetAddress.getLocalHost();
+                System.out.println(iaLocal.toString());
+                pw.println(iaLocal.toString());
 
             }
 
