@@ -8,6 +8,7 @@ class Http_Client extends Thread {
     int port;
     String s;
     String Greetings_from_S;
+    //public static PrintWriter pw;
 
 
     InetAddress iaLocal;
@@ -22,11 +23,19 @@ class Http_Client extends Thread {
 
     public void run() {
 
-        try (Socket socket = new Socket("192.168.1.200", port)) {
+        try (Socket socket = new Socket(Control_Panel.jTextField2.getText(), port)) {
 
-            PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+            PrintWriter  pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+            //pw.println("stop");
+
+
             pw.println("data");// Greetings with SERVER
             System.out.println("data");
+
+
+
+
+
 
 
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -35,10 +44,16 @@ class Http_Client extends Thread {
 
             if(Greetings_from_S.equals("ready")) {
 
-
                 iaLocal = InetAddress.getLocalHost();
-                System.out.println(iaLocal.toString());
-                pw.println(iaLocal.toString());
+                String s = iaLocal.toString();
+                String host_addr  = new StringBuilder(s).delete(0,5).toString();
+                System.out.println(host_addr);
+
+                pw.println(host_addr);
+
+                new Udp_Client();
+                new Udp_recipient();
+
 
             }
 
