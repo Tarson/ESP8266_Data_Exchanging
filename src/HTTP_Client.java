@@ -26,10 +26,10 @@ class Http_Client extends Thread {
         try (Socket socket = new Socket(Control_Panel.jTextField2.getText(), port)) {
 
             PrintWriter  pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-            //pw.println("stop");
 
+            pw.println("stop data");
 
-            pw.println("data");// Greetings with SERVER
+           pw.println("data");// Greetings with SERVER
             System.out.println("data");
 
 
