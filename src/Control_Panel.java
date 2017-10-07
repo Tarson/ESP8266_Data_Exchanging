@@ -65,7 +65,7 @@ public class Control_Panel extends JFrame
         jLabel2 = new javax.swing.JLabel();
 
         jTextField1.setText("5000");
-        jTextField2.setText("192.168.1.113");
+        jTextField2.setText("192.168.1.2");
 
 
 
@@ -81,7 +81,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 87;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton1.setEnabled(true);
@@ -112,7 +112,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 83;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton2.setEnabled(true);
@@ -139,7 +139,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 65;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton3.setEnabled(true);
@@ -167,7 +167,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 68;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton4.setEnabled(true);
@@ -195,7 +195,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 37;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton5.setEnabled(true);
@@ -222,7 +222,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 40;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton6.setEnabled(true);
@@ -249,7 +249,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 38;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton7.setEnabled(true);
@@ -275,7 +275,7 @@ public class Control_Panel extends JFrame
                 {
                     direction = 39;
                     reqFocus(true);
-                    Udp_Client.getInstance();
+
                     stop=true;
                     buttons_disable();
                     jButton8.setEnabled(true);
@@ -305,7 +305,7 @@ public class Control_Panel extends JFrame
             public void keyPressed(KeyEvent keyEvent)
             {
                 direction = keyEvent.getKeyCode();
-                Udp_Client.getInstance();
+
             }
 
 
@@ -402,6 +402,9 @@ public class Control_Panel extends JFrame
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        new Http_Client(4000);
+
+
 
     }
 

@@ -16,9 +16,9 @@ public class Udp_Client extends Thread
     int udp_port;
     InetAddress addr;
     DatagramSocket ds;
-    private static Udp_Client instance;
 
-   private Udp_Client()
+
+   public Udp_Client()
 
    {
        ip_address=Control_Panel.jTextField2.getText();
@@ -69,9 +69,9 @@ public class Udp_Client extends Thread
                     numb=4;
                     break;
 
-                case (87):
-                    numb=5;
-                    break;
+              //  case (87):
+             //       numb=5;
+             //       break;
                 case (83):
                     numb=6;
                     break;
@@ -82,9 +82,10 @@ public class Udp_Client extends Thread
                     numb=8;
                     break;
                 case (50):
-                    numb=10;
+                    numb=0;
                     break;
-
+                default:
+                    numb=10;
             }
 
 
@@ -92,30 +93,25 @@ public class Udp_Client extends Thread
             data = s.getBytes();
 
 
+
+
+
+            if(numb!=10) {
                 DatagramPacket pack = new DatagramPacket(data, data.length, addr, udp_port);
-                try
-                {
+                try {
                     ds.send(pack);
-                   // System.out.println(s);
+                    // System.out.println(s);
                     Thread.sleep(100);
-                   // Control_Panel.direction=50;
-                }
-                catch (Exception e)
-                {
+                    // Control_Panel.direction=50;
+                } catch (Exception e) {
                     System.out.println(e);
                 }
+                if(numb==0){Control_Panel.direction=0;}//перестаем отправлять нулевые пакеты
+            }
 
         }
     }
 
 
-    public static Udp_Client getInstance()//MAKING SINGLETON
-    {
-        if(instance == null)
-        {
-            instance = new Udp_Client();
-            new Udp_recipient();
-        }
-        return instance;
-    }
+
 }

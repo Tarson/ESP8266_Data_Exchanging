@@ -23,9 +23,9 @@ public class Udp_recipient extends Thread {
         udp_port=Integer.parseInt(Control_Panel.jTextField1.getText());
 
         byte[] s = new byte[1];
-    try {ds = new DatagramSocket();
+    try {ds = new DatagramSocket(5001);
         packet = new DatagramPacket(new byte[1], 1);
-        ds.connect( InetAddress.getByName(ip_address),udp_port);
+
 
     }
         catch (Exception e) {
@@ -43,7 +43,9 @@ public class Udp_recipient extends Thread {
 
 
                 ds.receive(packet);
-                System.out.println(new String(packet.getData()));
+                int t = packet.getData()[0];
+
+                System.out.println("пришло"+t);
 
             } catch (Exception e) {
 
