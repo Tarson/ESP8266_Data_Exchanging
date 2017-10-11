@@ -19,8 +19,8 @@ public class Udp_recipient extends Thread {
        // System.out.println("GO");
     start();
 
-        ip_address=Control_Panel.jTextField2.getText();
-        udp_port=Integer.parseInt(Control_Panel.jTextField1.getText());
+    //    ip_address=Control_Panel.jTextField2.getText();
+  //      udp_port=Integer.parseInt(Control_Panel.jTextField1.getText());
 
         byte[] s = new byte[1];
     try {ds = new DatagramSocket(5001);
@@ -30,9 +30,10 @@ public class Udp_recipient extends Thread {
     }
         catch (Exception e) {
 
-            System.out.println("ttt");
-
-            System.out.println(e);
+          //  System.out.println("ttt");
+            Control_Panel.jTextArea2.append("Cannot create incoming\r\n");
+            Control_Panel.jTextArea2.append("UDP connection\r\n");
+        //    System.out.println(e);
 
         }
 
@@ -44,12 +45,12 @@ public class Udp_recipient extends Thread {
 
                 ds.receive(packet);
                 int t = packet.getData()[0];
-
+                Control_Panel.jTextArea2.append("пришло"+t+ " \r\n");
                 System.out.println("пришло"+t);
 
             } catch (Exception e) {
 
-                System.out.println("yeee");
+              //  System.out.println("yeee");
 
             }
 

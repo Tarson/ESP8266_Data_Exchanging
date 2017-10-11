@@ -21,7 +21,7 @@ public class Udp_Client extends Thread
    public Udp_Client()
 
    {
-       ip_address=Control_Panel.jTextField2.getText();
+       ip_address=Control_Panel.jTextField2.getText().trim();
        udp_port=Integer.parseInt(Control_Panel.jTextField1.getText());
 
         try
@@ -33,6 +33,8 @@ public class Udp_Client extends Thread
         catch (Exception e)
         {
             System.out.println(e);
+
+            Control_Panel.jTextArea1.append("Cannot create UDP client\r\n");
         }
 
         start();
@@ -69,9 +71,9 @@ public class Udp_Client extends Thread
                     numb=4;
                     break;
 
-              //  case (87):
-             //       numb=5;
-             //       break;
+                case (87):
+                   numb=5;
+                   break;
                 case (83):
                     numb=6;
                     break;
@@ -101,10 +103,15 @@ public class Udp_Client extends Thread
                 try {
                     ds.send(pack);
                     // System.out.println(s);
+
+                    Control_Panel.jTextArea1.append(s+ "\r\n");
+
                     Thread.sleep(100);
                     // Control_Panel.direction=50;
                 } catch (Exception e) {
                     System.out.println(e);
+
+                    Control_Panel.jTextArea1.append("Cannot send UDP psck\r\n");
                 }
                 if(numb==0){Control_Panel.direction=0;}//перестаем отправлять нулевые пакеты
             }
