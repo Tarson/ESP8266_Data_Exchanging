@@ -38,7 +38,7 @@ class Http_Client extends Thread {
             while (!connected)
 
             {
-                try {Thread.sleep(1000);}
+                try {Thread.sleep(500);}
 
                 catch(Exception e)
                 {}

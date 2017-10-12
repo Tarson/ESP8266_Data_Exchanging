@@ -87,7 +87,7 @@ public class Control_Panel extends JFrame
 
 
 
-        jTextField1.setText("5000");
+        jTextField1.setText("50000");
         jTextField2.setText("                    ");
 
         jTextArea1.setText("Outcoming Data\r\n");
@@ -121,7 +121,7 @@ public class Control_Panel extends JFrame
 
 
 
-                    new Http_Client(4000);
+                    new Http_Client(40000);
 
                 }
 
@@ -516,9 +516,10 @@ public class Control_Panel extends JFrame
 
 
 
-        DefaultCaret caret = (DefaultCaret)jTextArea1.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-
+        DefaultCaret caret1 = (DefaultCaret)jTextArea1.getCaret();
+        caret1.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        DefaultCaret caret2 = (DefaultCaret)jTextArea2.getCaret();
+        caret2.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         setSize(600, 400);
         setFocusable(true);

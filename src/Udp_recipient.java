@@ -19,11 +19,10 @@ public class Udp_recipient extends Thread {
        // System.out.println("GO");
     start();
 
-    //    ip_address=Control_Panel.jTextField2.getText();
-  //      udp_port=Integer.parseInt(Control_Panel.jTextField1.getText());
 
-        byte[] s = new byte[1];
-    try {ds = new DatagramSocket(5001);
+
+
+    try {ds = new DatagramSocket(50000);
         packet = new DatagramPacket(new byte[1], 1);
 
 
@@ -46,7 +45,7 @@ public class Udp_recipient extends Thread {
                 ds.receive(packet);
                 int t = packet.getData()[0];
                 Control_Panel.jTextArea2.append("пришло"+t+ " \r\n");
-                System.out.println("пришло"+t);
+              //  System.out.println("пришло"+t);
 
             } catch (Exception e) {
 
