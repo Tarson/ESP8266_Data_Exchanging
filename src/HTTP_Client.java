@@ -80,11 +80,11 @@ class Http_Client extends Thread {
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             pw.println("stop data");
-            //  pw.println("stop"); // для совместимости с первой версией
 
 
-            pw.println("data");// Greetings with SERVER
-            Control_Panel.jTextArea1.append("data \r\n");
+
+            pw.println("host address");// Greetings with SERVER
+
 
             Greetings_from_S = br.readLine();
             if (Greetings_from_S.equals("ready"))
@@ -97,29 +97,7 @@ class Http_Client extends Thread {
             pw.println(host_addr);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              new Udp_Client();
-              new Udp_recipient();
-
-
             }
-
-
 
         } catch (Exception e) {
             connected=true;
@@ -128,6 +106,54 @@ class Http_Client extends Thread {
             System.out.println(e);
 
         }
+
+        try (Socket socket = new Socket(addr.trim(), port)) {
+
+
+            connected = true;
+
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            pw.println("stop data");
+            //  pw.println("stop"); // для совместимости с первой версией
+
+
+            pw.println("data");// Greetings with SERVER
+            Control_Panel.jTextArea1.append("data \r\n");
+
+            Greetings_from_S = br.readLine();
+            if (Greetings_from_S.equals("ready"))
+            {
+
+
+
+                new Udp_Client();
+                new Udp_recipient();
+            }
+
+        } catch (Exception e) {
+            connected=true;
+            Control_Panel.jTextArea1.append(" \r\n");
+            Control_Panel.jTextArea1.append("Cannot find host\r\n");
+            System.out.println(e);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
