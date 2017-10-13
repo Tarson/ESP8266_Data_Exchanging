@@ -75,33 +75,37 @@ class Http_Client extends Thread {
         try (Socket socket = new Socket(addr.trim(), port)) {
 
 
-            connected=true;
+            connected = true;
 
-            PrintWriter  pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-           // pw.println("stop"); // для совместимости с первой версией
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             pw.println("stop data");
+            //  pw.println("stop"); // для совместимости с первой версией
 
-           pw.println("data");// Greetings with SERVER
-          //  System.out.println("data");
+
+            pw.println("data");// Greetings with SERVER
             Control_Panel.jTextArea1.append("data \r\n");
 
-
-
-
-
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             Greetings_from_S = br.readLine();
-          //  System.out.println(Greetings_from_S);
-            Control_Panel.jTextArea1.append(" "+ Greetings_from_S+ " \r\n");
-            if(Greetings_from_S.equals("ready")) {
+            if (Greetings_from_S.equals("ready"))
+            {
+            iaLocal = InetAddress.getLocalHost();
+            String s = iaLocal.toString();
+            String host_addr = new StringBuilder(s).delete(0, 5).toString();
 
-                iaLocal = InetAddress.getLocalHost();
-                String s = iaLocal.toString();
-                String host_addr  = new StringBuilder(s).delete(0,5).toString();
-               // System.out.println(host_addr);
-                Control_Panel.jTextArea1.append(" "+host_addr+"  \r\n");
-                pw.println(host_addr);
+            Control_Panel.jTextArea1.append(" " + host_addr + "  \r\n");
+            pw.println(host_addr);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
