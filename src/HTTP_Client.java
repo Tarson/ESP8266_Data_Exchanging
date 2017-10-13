@@ -96,6 +96,8 @@ class Http_Client extends Thread {
             Control_Panel.jTextArea1.append(" " + host_addr + "  \r\n");
             pw.println(host_addr);
 
+            Greetings_from_S = br.readLine();
+            Control_Panel.jTextArea1.append(Greetings_from_S+"\r\n");
 
             }
 
