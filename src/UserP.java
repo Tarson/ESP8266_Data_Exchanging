@@ -13,7 +13,10 @@ public class UserP implements Serializable {
 
 
 
-    UserP( String IP_address){
+    UserP( String IP_address)// это нам данные для сохранения в файле
+
+
+    {
 
 
 

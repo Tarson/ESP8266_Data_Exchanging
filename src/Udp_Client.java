@@ -28,7 +28,7 @@ public class Udp_Client extends Thread
         {
             ds = new DatagramSocket();
             addr = InetAddress.getByName(ip_address);
-            // System.out.println(addr);
+
         }
         catch (Exception e)
         {
@@ -43,10 +43,10 @@ public class Udp_Client extends Thread
     public void run()  {
 
 /*
-    keys servo 1  -  37 39
-    keys servo 2  -  87  83
-    keys servo 3  -  65  68
-    keys servo 4   - 38  40
+    keys servo 1  -  37 39 strelki
+    keys servo 2  -  87  83 ws
+    keys servo 3  -  65  68 ad
+    keys servo 4   - 38  40 strelki
 */
 
 
@@ -102,12 +102,12 @@ public class Udp_Client extends Thread
                 DatagramPacket pack = new DatagramPacket(data, data.length, addr, udp_port);
                 try {
                     ds.send(pack);
-                    // System.out.println(s);
+
 
                     Control_Panel.jTextArea1.append(s+ "\r\n");
 
                     Thread.sleep(100);
-                    // Control_Panel.direction=50;
+
                 } catch (Exception e) {
                     System.out.println(e);
 

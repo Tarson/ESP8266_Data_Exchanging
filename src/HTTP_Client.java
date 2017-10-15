@@ -38,13 +38,13 @@ class Http_Client extends Thread {
             while (!connected)
 
             {
-                try {Thread.sleep(500);}
+                try {Thread.sleep(500);}// мастрячим пробелы на экране пока ждём соединения
 
                 catch(Exception e)
                 {}
                 if (i==0)
                 {i++;}
-                else Control_Panel.jTextArea1.append(".");}
+                else Control_Panel.jTextArea1.append("-");}
 
 
             }
@@ -67,19 +67,20 @@ class Http_Client extends Thread {
 
 
 
-          //  System.out.println(Control_Panel.jTextField2.getText());
+
 
 
             String  addr = UserP.user.IP_address;
 
-        try (Socket socket = new Socket(addr.trim(), port)) {
+        try (Socket socket = new Socket(addr.trim(), port))// отправляем адрес компа на ESP
+        {
 
 
             connected = true;
 
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            pw.println("stop data");
+            pw.println("stop data");//на всякий случай, вдруг вышли некорректно
 
 
 
@@ -90,34 +91,36 @@ class Http_Client extends Thread {
             if (Greetings_from_S.equals("ready"))
             {
             iaLocal = InetAddress.getLocalHost();
-            String s = iaLocal.toString();
-            String host_addr = new StringBuilder(s).delete(0, 5).toString();
+            String s = iaLocal.getHostAddress();
 
-            Control_Panel.jTextArea1.append(" " + host_addr + "  \r\n");
-            pw.println(host_addr);
+            Control_Panel.jTextArea1.append(s + "  \r\n");
+            pw.println(s);// отправляем адрес компа на ESP
 
             Greetings_from_S = br.readLine();
             Control_Panel.jTextArea1.append(Greetings_from_S+"\r\n");
 
             }
 
-        } catch (Exception e) {
+          } catch (Exception e) {
             connected=true;
             Control_Panel.jTextArea1.append(" \r\n");
             Control_Panel.jTextArea1.append("Cannot find host\r\n");
             System.out.println(e);
 
-        }
+          }
 
-        try (Socket socket = new Socket(addr.trim(), port)) {
+
+
+
+         try (Socket socket = new Socket(addr.trim(), port))// говорим, что будет сеанс обмена данными
+         {
 
 
             connected = true;
 
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            pw.println("stop data");
-            //  pw.println("stop"); // для совместимости с первой версией
+
 
 
             pw.println("data");// Greetings with SERVER
@@ -126,8 +129,6 @@ class Http_Client extends Thread {
             Greetings_from_S = br.readLine();
             if (Greetings_from_S.equals("ready"))
             {
-
-
 
                 new Udp_Client();
                 new Udp_recipient();

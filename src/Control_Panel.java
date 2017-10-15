@@ -1,16 +1,12 @@
-import javafx.event.ActionEvent;
+
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+
 import javax.swing.text.DefaultCaret;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-
 
 /*
     keys servo 1  -  37 39
@@ -45,7 +41,7 @@ public class Control_Panel extends JFrame
 
     public static  javax.swing.JTextArea jTextArea2;
 
-    public static  String file_path = "c:udp_data.txt";
+    public static  String file_path = "c:udp_data.txt";// путь к файлу где сохранка
 
 
 
@@ -128,7 +124,7 @@ public class Control_Panel extends JFrame
                  catch (Exception e) {
 
 
-               // System.out.println("gg");
+
                      Control_Panel.jTextArea1.append("Cannot write IP info to file\r\n");
 
 
@@ -146,7 +142,7 @@ public class Control_Panel extends JFrame
 
 
 
-        jButton1.setText("W: вперёд");
+        jButton1.setText("скорость ++");
         jButton1.addActionListener(new ActionListener()
         {
 
@@ -178,7 +174,7 @@ public class Control_Panel extends JFrame
         });
 
 
-        jButton2.setText("S: назад");
+        jButton2.setText("скорость -- ");
         jButton2.addActionListener(new ActionListener()
         {
 
@@ -205,7 +201,7 @@ public class Control_Panel extends JFrame
         });
 
 
-        jButton3.setText("A: вверх ");
+        jButton3.setText("запасная");
         jButton3.addActionListener(new ActionListener()
         {
 
@@ -233,7 +229,7 @@ public class Control_Panel extends JFrame
 
 
 
-        jButton4.setText("D: вниз  ");
+        jButton4.setText("запасная");
         jButton4.addActionListener(new ActionListener()
         {
 
@@ -261,7 +257,7 @@ public class Control_Panel extends JFrame
 
 
 
-        jButton5.setText("<: влево ");
+        jButton5.setText(" влево ");
         jButton5.addActionListener(new ActionListener()
         {
 
@@ -288,7 +284,7 @@ public class Control_Panel extends JFrame
         });
 
 
-        jButton6.setText("^: раскрыть");
+        jButton6.setText("вперёд");
         jButton6.addActionListener(new ActionListener()
         {
 
@@ -315,7 +311,7 @@ public class Control_Panel extends JFrame
         });
 
 
-        jButton7.setText("Y: захват  ");
+        jButton7.setText("назад  ");
         jButton7.addActionListener(new ActionListener()
         {
 
@@ -341,7 +337,7 @@ public class Control_Panel extends JFrame
             }
         });
 
-        jButton8.setText(">: вправо");
+        jButton8.setText(" вправо");
         jButton8.addActionListener(new ActionListener()
         {
 
