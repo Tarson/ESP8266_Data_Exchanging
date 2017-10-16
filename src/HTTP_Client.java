@@ -11,6 +11,7 @@ class Http_Client extends Thread {
     String s;
     String Greetings_from_S;
     Boolean connected = false;
+    Boolean udp_link = false;
     //public static PrintWriter pw;
 
 
@@ -129,9 +130,12 @@ class Http_Client extends Thread {
             Greetings_from_S = br.readLine();
             if (Greetings_from_S.equals("ready"))
             {
-
-                new Udp_Client();
-                new Udp_recipient();
+                if(udp_link)// проверяем на ранее запущенные udp
+                {
+                    new Udp_Client();
+                    new Udp_recipient();
+                    udp_link = true;
+                }
             }
 
         } catch (Exception e) {
