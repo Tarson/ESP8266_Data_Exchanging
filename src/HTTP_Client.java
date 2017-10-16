@@ -10,8 +10,8 @@ class Http_Client extends Thread {
     int port;
     String s;
     String Greetings_from_S;
-    Boolean connected = false;
-    Boolean udp_link = false;
+    public static Boolean connected = false;
+    public static Boolean udp_link = false;
     //public static PrintWriter pw;
 
 
@@ -39,13 +39,13 @@ class Http_Client extends Thread {
             while (!connected)
 
             {
-                try {Thread.sleep(500);}// мастрячим пробелы на экране пока ждём соединения
+                try {Thread.sleep(500);}// мастрячим точки на экране пока ждём соединения
 
                 catch(Exception e)
                 {}
                 if (i==0)
                 {i++;}
-                else Control_Panel.jTextArea1.append("-");}
+                else Control_Panel.jTextArea1.append(" . ");}
 
 
             }
@@ -83,22 +83,40 @@ class Http_Client extends Thread {
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             pw.println("stop data");//на всякий случай, вдруг вышли некорректно
 
+            pw.println("data");// Greetings with SERVER
+            Control_Panel.jTextArea1.append("data \r\n");
 
-
-            pw.println("host address");// Greetings with SERVER
 
 
             Greetings_from_S = br.readLine();
             if (Greetings_from_S.equals("ready"))
             {
             iaLocal = InetAddress.getLocalHost();
-            String s = iaLocal.getHostAddress();
+            String ip_address = iaLocal.getHostAddress();
 
-            Control_Panel.jTextArea1.append(s + "  \r\n");
-            pw.println(s);// отправляем адрес компа на ESP
+            Control_Panel.jTextArea1.append(ip_address + "  \r\n");
+            pw.println(ip_address);// отправляем адрес компа на ESP
+
+
+
+
+
 
             Greetings_from_S = br.readLine();
-            Control_Panel.jTextArea1.append(Greetings_from_S+"\r\n");
+            Control_Panel.jTextArea1.append(Greetings_from_S+"\r\n");// получаем адрес компа обратно
+
+
+                if(!udp_link)// проверяем на ранее запущенные udp, если ону уже были запущены, то новые не городим
+                {
+                    new Udp_Client();
+                    new Udp_recipient();
+                    udp_link = true;
+                }
+
+
+
+
+
 
             }
 
@@ -108,43 +126,13 @@ class Http_Client extends Thread {
             Control_Panel.jTextArea1.append("Cannot find host\r\n");
             System.out.println(e);
 
+
           }
 
 
 
 
-         try (Socket socket = new Socket(addr.trim(), port))// говорим, что будет сеанс обмена данными
-         {
 
-
-            connected = true;
-
-            PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-
-
-            pw.println("data");// Greetings with SERVER
-            Control_Panel.jTextArea1.append("data \r\n");
-
-            Greetings_from_S = br.readLine();
-            if (Greetings_from_S.equals("ready"))
-            {
-                if(udp_link)// проверяем на ранее запущенные udp
-                {
-                    new Udp_Client();
-                    new Udp_recipient();
-                    udp_link = true;
-                }
-            }
-
-        } catch (Exception e) {
-            connected=true;
-            Control_Panel.jTextArea1.append(" \r\n");
-            Control_Panel.jTextArea1.append("Cannot find host\r\n");
-            System.out.println(e);
-
-        }
 
 
 
