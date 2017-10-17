@@ -84,7 +84,7 @@ public class Control_Panel extends JFrame
 
 
         jTextField1.setText("50000");
-        jTextField2.setText("                    ");
+        jTextField2.setText("");
 
         jTextArea1.setText("Outcoming Data\r\n");
 
