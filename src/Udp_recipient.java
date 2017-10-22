@@ -44,7 +44,7 @@ public class Udp_recipient extends Thread {
 
                 ds.receive(packet);
                 int t = packet.getData()[0];
-                Control_Panel.jTextArea2.append("пришло"+t+ " \r\n");
+                Control_Panel.jTextArea2.append("пришло       "+t+ " \r\n");
 
 
             } catch (Exception e) {

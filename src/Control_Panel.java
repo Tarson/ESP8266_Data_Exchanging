@@ -517,7 +517,7 @@ public class Control_Panel extends JFrame
         DefaultCaret caret2 = (DefaultCaret)jTextArea2.getCaret();
         caret2.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
-        setSize(600, 400);
+        setSize(600, 800);
         setFocusable(true);
         setLocationRelativeTo(null);
         setVisible(true);
